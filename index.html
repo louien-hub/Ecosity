@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - CURATED</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto:400,700" rel="stylesheet">
+
+<div id="parent" class="container">
+  
+  <!-- Navigation -->
+  
+  <header>
+    <!-- <div class="navbar">
+      <a id="menu" href="#">
+        <div class="hamburger">
+          <div class="bar firstLine"></div>
+          <div class="bar secondLine"></div>
+          <div class="bar thirdLine"></div>
+        </div>
+       </a>
+      <div class="logo">
+        <div class="textLogo">Ecosity</div>
+      </div>
+      
+     
+      <a id="search" href="#">
+        <div class="search">
+          <div class="searchIcon"></div>
+          <div class="tail"></div>
+        </div>
+      </a>
+    </div>   -->
+    
+    <!-- search -->
+    <div class="logo">
+        <div class="textLogo">Ecosity
+        
+        </div>
+    </div>
+    
+    <form id="search" method="get" action="https://www.google.com/search">
+    <div id="searchBar">
+      <input id="search-bar" type="search" name="q" size="31" value="" placeholder="    Save Earth by Search">
+      <input id="submit" type="submit" class="submitbtn" />
+    </div>
+    </form>
+    <!-- search -->
+    
+  </header>
+  
+  <!-- Card Layout -->
+
+  <div class="cardLayout">
+    <div class="firstRow">
+      <div class="card card-long">
+        <div class="card-long-bg">
+          <a class="likesCounter" href="#">
+            <span class="likes" id="likes1">3,289</span>
+          </a>
+        </div>
+        <div class="card-long-block">
+          <div class="card-long-header">
+              <h1></h1>
+          </div>
+          <p>In nature, nothing is perfect and everything is perfect. Trees can be contorted, bent in weird ways, and they're still beautiful. –Alice Walker</p>
+        </div>
+      </div>
+
+      <div class="card l-spacing card-reg card-reg-overlay">
+         <div class="card-reg-header">Always Look On The Bright Side Of Life</div>
+         <a class="likesCounter" href="#">
+            <span class="likes" id="likes2">2,569</span>
+          </a>
+      </div>
+    </div>
+    
+    <div class="clear"></div>
+    
+    <div class="secondRow">
+      <div class="card card-reg card-reg-bg">
+        <div class="card-reg-left-reg">I believe in God, only I spell it Nature. —Frank Lloyd Wright</div>
+        <a class="likesCounter" href="#">
+            <span class="likes" id="likes3">582</span>
+          </a>
+      </div>
+      <div class="card card-long l-spacing">
+        <div class="card-long-bg-two">
+          <a class="likesCounter" href="#">
+            <span class="likes" id="likes4">859</span>
+          </a>
+        </div> 
+        <div class="card-long-block">
+          <div class="card-long-header">By discovering nature, you discover yourself. <br>—Maxime Lagacé</div>
+          <p>“Not just beautiful, though — the stars are like the trees in the forest, alive and breathing. And they’re watching me.”</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="clear"></div>
+    
+    <div class="thirdRow">
+      <div class="card r-spacing card-xl card-xl-bg">
+        <div class="card-reg-left-xl">A Great Way To Generate All The Motivation You Need To Get Fit</div>
+        <a class="likesCounter" href="#">
+            <span class="likes" id="likes5">734</span>
+          </a>
+      </div>
+      <div class="card card-sm card-sm-bg">
+        <div class="card-reg-left-sm">“The goal of life is living in agreement with nature.”</div>
+        <a class="likesCounter" href="#">
+            <span class="likes" id="likes6">582</span>
+        </a>
+      </div>
+      </div>
+    </div>  
+ </div> 
+<div class="clear"></div>
+
+
+<!-- partial -->
+  <script>
+//HTML elements
+const countBtn = document.querySelector(".submitbtn");
+const counterValue =document.querySelector("h1");
+
+//local storage
+let counter = Number(localStorage.getItem("counter"));
+counterValue.innerText = String(counter);
+
+//event listener
+countBtn.addEventListener("click", () => {
+  
+  counterValue.innerText = String(++counter);
+  //z każdym kliknięciem musimy zapisywać nową wartość do local storage
+  localStorage.setItem("counter", String(counter));
+});
+</script>
+
+<script>
+// Content-Security-Policy: require-trusted-types-for 'script'; trusted-types foo;
+
+const attackerInput = '<svg onload="alert(/cross-site-scripting/)" />';
+const el = document.createElement("div");
+
+if (typeof trustedTypes !== "undefined") {
+  // Create a policy that can create TrustedHTML values
+  // after sanitizing the input strings with DOMPurify library.
+  const sanitizer = trustedTypes.createPolicy("foo", {
+    createHTML: (input) => DOMPurify.sanitize(input),
+  });
+
+  el.innerHTML = sanitizer.createHTML(attackerInput); // Puts the sanitized value into the DOM.
+  el.innerHTML = attackerInput; // Rejects a string value; throws a TypeError.
+}
+
+</script>
+
+</body>
+</html>
